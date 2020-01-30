@@ -49,4 +49,11 @@ public class KataIT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("The String has to contain only 1 character"));
   }
 
+  @Test
+  public void testKataRejectsInvalidStrings() {
+    String[] args = new String[]{"1"};
+    MainMethodResult result = invokeMain(args);
+    assertThat(result.getExitCode(), equalTo(1));
+    assertThat(result.getTextWrittenToStandardError(), containsString("You have to provide an alphabetical character as the input"));
+  }
 }
