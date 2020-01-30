@@ -1,8 +1,5 @@
 package edu.pdx.cs410J.sytov;
 
-
-import java.util.HashSet;
-
 /**
  * A class for getting started with a code kata
  *
@@ -10,10 +7,42 @@ import java.util.HashSet;
  * class (and its tests).
  */
 public class Kata {
-                                                                                    
+  public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  public static final char[] alphabet_arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+  private static String addSpaces(int n) {
+    String str = "";
+    for(int i = 0; i < n; ++i) {
+      str += " ";
+    }
+    return str;
+  }
+
+  public static void printDiamond(char c) {
+    int index = alphabet.indexOf(c);
+    int outer_spaces = index;
+    int inner_spaces = 1;
+    System.out.println(addSpaces(outer_spaces) + "A");
+    --outer_spaces;
+    for(int i = 1; i <= index && outer_spaces >= 0; ++i) {
+      System.out.println(addSpaces(outer_spaces) + alphabet_arr[i] + addSpaces(inner_spaces) + alphabet_arr[i]);
+      --outer_spaces;
+      inner_spaces += 2;
+    }
+    if(index > 0) {
+      outer_spaces += 2;
+      inner_spaces -= 4;
+      for(int i = index - 1; i >= 1 && outer_spaces < index; --i) {
+        System.out.println(addSpaces(outer_spaces) + alphabet_arr[i] + addSpaces(inner_spaces) + alphabet_arr[i]);
+        ++outer_spaces;
+        inner_spaces -= 2;
+      }
+      System.out.println(addSpaces(outer_spaces) + "A");
+    }
+
+  }
 
   public static void main(String[] args) {
-    char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     if (args.length < 1) {
       System.err.println("Missing command line arguments");
@@ -35,6 +64,7 @@ public class Kata {
       System.exit(1);
     }
     char c = args[0].charAt(0);
+    printDiamond(c);
     System.exit(0);
   }
 
