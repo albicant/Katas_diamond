@@ -2,6 +2,7 @@ package edu.pdx.cs410J.sytov;
 
 /**
  * A class for getting started with a code kata
+ * Project by Michelle Duer and Gennadii Sytov
  *
  * Use IntelliJ's "Refactor | Rename..." command to change the name of this
  * class (and its tests).

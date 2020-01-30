@@ -56,4 +56,34 @@ public class KataIT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(1));
     assertThat(result.getTextWrittenToStandardError(), containsString("You have to provide an alphabetical character as the input"));
   }
+
+  @Test
+  public void testCharAResultsInCorrectDiamondPrintout() {
+    String[] args = new String[]{"A"};
+    MainMethodResult result = invokeMain(args);
+    assertThat(result.getExitCode(), equalTo(0));
+    assertThat(result.getTextWrittenToStandardOut(), containsString("A"));
+  }
+
+  @Test
+  public void testCharBResultsInCorrectDiamondPrintout() {
+    String[] args = new String[]{"B"};
+    MainMethodResult result = invokeMain(args);
+    assertThat(result.getExitCode(), equalTo(0));
+    assertThat(result.getTextWrittenToStandardOut(), containsString(" A\n" +
+                                                                             "B B\n" +
+                                                                             " A"));
+  }
+
+  @Test
+  public void testCharCResultsInCorrectDiamondPrintout() {
+    String[] args = new String[]{"C"};
+    MainMethodResult result = invokeMain(args);
+    assertThat(result.getExitCode(), equalTo(0));
+    assertThat(result.getTextWrittenToStandardOut(), containsString("  A\n" +
+                                                                             " B B\n" +
+                                                                             "C   C\n" +
+                                                                             " B B\n" +
+                                                                             "  A"));
+  }
 }
